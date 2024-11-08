@@ -8,23 +8,63 @@
 <body>
     <h1>Memo Commandes GIT</h1>
 
-    -git init permet de configurer un dossier avec git
-    -un fichier caché apparait .git est créé 
-        Aller dans file>préférences>setting>écrire file.exclude et supprimer .git si le fichier n'apparait pas.
-    -git add "nomdufichier" pour marquer le fichier modi0fié
-        par exemple add "index.html"
-    -git status permet de vérifier l'état du fichier
-    -git commit -m "nomducommit" permet de faire un instantané du fichier
-        par exemple git commit -m "Add Title"
-    -git log permet de voir tous les instantanés déja crées.
+    <h2>Commande ETAPES Git</h2>
+        <p>
+        -git init permet de configurer un dossier avec git
+        -un fichier caché apparait .git est créé 
+            Aller dans file>préférences>setting>écrire file.exclude et supprimer .git si le fichier n'apparait pas.
+        -git add "nomdufichier" pour marquer le fichier modifié
+            par exemple add "index.html"
+        -git add -A (ou git add.) pour ajouter tous les fichiers modifiés d'un coup.
+        -git status permet de vérifier l'état du fichier
+        -git commit -m "nomducommit" permet de faire un instantané du fichier
+            par exemple git commit -m "Add Title"
+        
+        En cas d'erreur de message commit
+        -git commit --amend -m "nouveau message" permet de modifier le message du dernier commit.    
+        
+        Si on oublier d'indexer un fichier avant un commit.
+        -git add nom-du-fichier-oublié
+        -git commit --amend --no-edit (--no-edit permet de conserver le message) 
+        
+        Enfin, git log permet de voir tous les instantanés déja crées.
 
-    PENSER A FAIRE REGULIEREMENT DE commit
+        PENSER A FAIRE REGULIEREMENT DE commit !
 
-    Voici les différentes ETAPES du fichier :
-    - A la création du fichier, il est Untracked.
-    - Apres Git add, il est Indexé.
-    - Apres git commit, il est Validé.
-    etc
+        Voici les différentes ETAPES du fichier :
+        - A la création du fichier, il est Untracked.
+        - Apres Git add, il est Indexé.
+        - Apres git commit, il est Validé.
+        etc
+    </p>
+    <h2>Commande création de branche et merge</h2>
+    <p>
+        La branche principale s'appelle MAIN.
+            (avant elle s'appellait MASTER, pour la renommer en MAIN : git branch -M main)
 
+        Il faut créer des branches secondaire pour travailler dessus.
+
+        - Pour créer une branche : git branch nom_de_la_branche
+        - Pour supprimer une branche : git branch -D nom_de_la_branche
+        - Pour voir la liste des branches : git branch
+        - Pour se placer sur une autre branche : git checkout nom_de_la_branche
+    
+        Le MERGE consiste a rappatrier le travail effectué sur d'autre branche vers la branche MAIN.
+        -On se place sur la branche « main » : git checkout main (ou de façon générale sur la branche dans laquelle on veut insérer le code) ;
+        -Puis on demande le merge : git merge nom_de_la_branche.
+    </p>
+    <h2>Effectuer une Remise</h2>
+    <p>
+        Imaginons que vous ayez fait une indexation de vos fichiers sur la mauvaise branche. Vous pouvez déplacer vos modifications vers une « remise ». C’est ce qu’on appelle le « stash ».
+        Il y a trois étapes :
+
+        En étant sur la mauvaise branche, on saisit git stash ;
+        Puis, on se place sur la bonne branche avec git checkout bonne_branche ;
+        Enfin, pour remettre notre code sur cette branche (la bonne), on utilise git stash apply. 
+        Cette commande applique le dernier « stash » enregistré.
+
+        On peut voir la liste des « stash » avec git stash list. Chaque « stash » a un identifiant. 
+        Donc si on ne veut pas appliquer le dernier mais un autre on utilise git stash apply identifiant_du_stash.
+    </p>
 </body>
 </html>
